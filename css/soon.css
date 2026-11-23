@@ -1,0 +1,67 @@
+/* SEP — compact coming-soon page, matched to the supplied reference. */
+body.soon-page {
+  min-height:100svh;
+  margin:0;
+  background:var(--bg); /* same warm off-white as main site */
+  color:var(--black);
+  font-family:Arial, Helvetica, sans-serif;
+}
+.soon-main {
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  padding:clamp(50px,8vh,100px) 20px;
+}
+.soon-content {
+  width:min(100%, 600px);
+  text-align:center;
+  margin:0 auto;
+  transform:translateY(-10px);
+}
+.soon-content h1 {
+  margin:0 0 22px;
+  font-size:clamp(21px,2.15vw,28px);
+  font-weight:700;
+  letter-spacing:-.045em;
+  line-height:1.13;
+}
+.soon-content p {
+  margin:0 0 17px;
+  font-size:clamp(14px,1.25vw,17px);
+  font-weight:400;
+  letter-spacing:-.035em;
+  line-height:1.2;
+}
+.soon-actions {
+  margin:clamp(44px,6vh,62px) auto 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:clamp(28px,4vw,65px);
+}
+.soon-button {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-width:118px;
+  padding:10px 16px;
+  border-radius:999px;
+  color:#fff;
+  text-decoration:none;
+  font:400 clamp(16px,1.35vw,19px)/1 Arial, Helvetica, sans-serif;
+  letter-spacing:-.035em;
+  transition:transform .25s ease, background-color .25s ease;
+}
+.soon-button:hover,.soon-button:focus-visible {transform:scale(.94);}
+.soon-button--primary {background:var(--orange);}
+.soon-button--primary:hover,.soon-button--primary:focus-visible {background:var(--orange);}
+.soon-button--secondary {background:#000;}
+.soon-button--secondary:hover,.soon-button--secondary:focus-visible {background:#333;}
+@media(max-width:600px) {
+  .soon-content {transform:none;}
+  .soon-desktop-break {display:none;}
+  .soon-content h1 {font-size:clamp(21px,5.3vw,27px);margin-bottom:22px;}
+  .soon-content p {font-size:clamp(14px,3.7vw,17px);}
+  .soon-actions {gap:22px;flex-wrap:wrap;}
+}
+@media(prefers-reduced-motion:reduce) {.soon-button {transition:none;}}

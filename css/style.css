@@ -1,0 +1,1190 @@
+@font-face {
+  font-family: "Exposure";
+  src: url("../fonts/exposurectwo.ttf") format("truetype");
+  font-display: swap;
+}
+:root {
+  --bg: #fffefc;
+  --orange: #ff3b00;
+  --black: #000;
+  --gray: #777;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: Arial, sans-serif;
+}
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 540px;
+  overflow: hidden;
+  background: var(--bg);
+}
+#gallery {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+#gallery canvas {
+  display: block;
+}
+.header {
+  position: absolute;
+  top: 16px;
+  left: 2.4%;
+  right: 2.4%;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-family: "Exposure", Arial, sans-serif;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+}
+.nav {
+  display: flex;
+  gap: 2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.nav a {
+  background: var(--gray);
+  color: #fff;
+  border-radius: 24px;
+  padding: 7px 13px;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 1;
+}
+.nav a:hover {
+  background: #333;
+}
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--black);
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.button:hover {
+  background: var(--orange);
+}
+.hero-word {
+  position: absolute;
+  z-index: 2;
+  top: 52%;
+  transform: translateY(-50%);
+  margin: 0;
+  color: var(--orange);
+  font-family: "Exposure", Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(48px, 5.7vw, 100px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  pointer-events: none;
+}
+.hero-word--left {
+  left: 2.4%;
+}
+.hero-word--right {
+  right: 2.4%;
+}
+.hero-cta {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 16%;
+  transform: translateX(-50%);
+}
+@media (max-width: 800px) {
+  .nav {
+    display: none;
+  }
+  .hero-word {
+    font-size: clamp(38px, 9vw, 70px);
+  }
+  .hero-word--left {
+    top: 27%;
+    left: 5%;
+  }
+  .hero-word--right {
+    top: 72%;
+    right: 5%;
+  }
+  .hero-cta {
+    bottom: 7%;
+  }
+}
+/* Крупная кнопка по центру */
+.hero-cta .button {
+  font-size: 22px;
+  padding: 17px 34px;
+}
+/* Эффекты кнопок */
+.button,
+.nav a {
+  transition:
+    transform 0.18s ease,
+    background-color 0.2s ease;
+}
+.button:hover,
+.nav a:hover {
+  transform: scale(1.03);
+}
+.button:active,
+.nav a:active {
+  transform: scale(0.94);
+}
+/* Оранжевый курсор (только устройства с мышью) */
+@media (pointer: fine) {
+  body,
+  body *,
+  #gallery,
+  #gallery canvas {
+    cursor: none !important;
+  }
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--orange);
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition:
+      width 0.18s,
+      height 0.18s,
+      opacity 0.18s;
+  }
+  .custom-cursor.hover {
+    width: 30px;
+    height: 30px;
+  }
+  .custom-cursor.click {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* ВТОРОЙ ЭКРАН — статичный, без анимации печати */
+.about {
+  position: relative;
+  min-height: 89svh;
+  background: var(--bg);
+  overflow: hidden;
+}
+.about-heading {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: "Exposure", Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(36px, 4.1vw, 64px);
+  line-height: 1.15;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+.about-tag {
+  position: absolute;
+  display: inline-block;
+  background: #ff987d;
+  color: white;
+  border-radius: 999px;
+  padding: 4px 14px;
+  font:
+    500 clamp(12px, 1.25vw, 17px)/1 Arial,
+    sans-serif;
+  white-space: nowrap;
+}
+.about-tag--moscow {
+  top: 21%;
+  left: 11%;
+}
+.about-tag--year {
+  top: 20%;
+  right: 19%;
+}
+.about-tag--available {
+  top: 49%;
+  left: 20%;
+}
+.about-tag--world {
+  top: 56%;
+  right: 11%;
+}
+.about-copy {
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  width: min(42vw, 520px);
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+.about-text {
+  margin: 0 auto;
+  font-size: clamp(19px, 2vw, 29px);
+  line-height: 1.15;
+}
+.about-text--secondary {
+  margin-top: 28px;
+  color: #929292;
+}
+@media (max-width: 800px) {
+  .about {
+    min-height: 680px;
+  }
+  .about-heading {
+    top: 12%;
+    font-size: clamp(34px, 9vw, 52px);
+  }
+  .about-copy {
+    top: 34%;
+    width: 90%;
+  }
+  .about-text {
+    font-size: clamp(18px, 4.8vw, 26px);
+  }
+  .about-tag--moscow {
+    top: 23%;
+    left: 5%;
+  }
+  .about-tag--year {
+    top: 23%;
+    right: 5%;
+  }
+  .about-tag--available {
+    top: 73%;
+    left: 7%;
+  }
+  .about-tag--world {
+    top: 82%;
+    right: 6%;
+  }
+}
+
+/* Небольшой безопасный отступ для выступающих букв Exposure */
+.hero-word--left {
+  left: 12px;
+  padding-left: 2px;
+}
+
+/* ТРЕТИЙ ЭКРАН — направления */
+.services {
+  min-height: 93svh;
+  padding: clamp(40px, 6vh, 80px) 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+}
+.services-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 3.5vh, 40px);
+}
+.service-item {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  color: #7b7b7b;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Exposure", Arial, sans-serif;
+  font-size: clamp(37px, 5.5vw, 92px);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1.13;
+  padding: 0.09em 0.12em 0.16em;
+  transform: scale(1);
+  transform-origin: center;
+  transition:
+    color 0.38s ease,
+    transform 0.48s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.service-item:hover,
+.service-item:focus-visible {
+  color: #000;
+  transform: scale(1.09);
+}
+.service-item:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 7px;
+  border-radius: 8px;
+}
+.service-item:active {
+  transform: scale(1.035);
+}
+
+/* Курсор-плашка при наведении на категорию */
+@media (pointer: fine) {
+  .custom-cursor::after {
+    content: "смотреть";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font:
+      500 17px/1 Arial,
+      sans-serif;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .custom-cursor.is-service,
+  .custom-cursor.is-service.click {
+    width: 138px;
+    height: 33px;
+    border-radius: 999px;
+    background: rgba(255, 105, 70, 0.78);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+  .custom-cursor.is-service::after {
+    opacity: 1;
+  }
+  .custom-cursor {
+    transition:
+      width 0.24s ease,
+      height 0.24s ease,
+      opacity 0.18s ease,
+      background-color 0.24s ease;
+  }
+}
+@media (max-width: 800px) {
+  .services {
+    padding: 72px 12px;
+  }
+  .services-list {
+    gap: clamp(22px, 4vh, 42px);
+  }
+  .service-item {
+    font-size: clamp(32px, 7.8vw, 66px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-item,
+  .custom-cursor {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ЧЕТВЁРТЫЙ ЭКРАН — проекты */
+.projects {
+  min-height: 100svh;
+  padding: clamp(38px, 6vh, 65px) 0 50px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.projects-heading {
+  margin: 0 0 clamp(45px, 7vh, 80px);
+  text-align: center;
+  font:
+    900 clamp(40px, 4.4vw, 70px)/1.2 "Exposure",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.05em;
+}
+.projects-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.projects-track {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(28px, 6.25vw, 100px);
+  padding: 0;
+  transform: translateX(0);
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.project-card {
+  flex: 0 0 min(58vw, 900px);
+  display: block;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  outline-offset: 6px;
+}
+.project-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.62;
+  overflow: hidden;
+  border-radius: 8px;
+  background: linear-gradient(125deg, #777, #c9bfb2 40%, #383838);
+}
+.project-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition:
+    filter 0.65s ease,
+    transform 0.7s ease;
+}
+.project-card.is-side .project-media img {
+  filter: blur(8px) brightness(0.87);
+  transform: scale(1.04);
+}
+.project-card.is-side .project-media {
+  filter: none;
+}
+.project-card:not(.is-side):hover .project-media img {
+  transform: scale(1.025);
+}
+.project-card:focus-visible .project-media {
+  outline: 3px solid var(--orange);
+}
+.project-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-top: 18px;
+  font:
+    500 clamp(13px, 1.2vw, 18px)/1.2 Arial,
+    sans-serif;
+  color: #7c7c7c;
+}
+.projects-arrow {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  height: calc(100% - 43px);
+  width: clamp(70px, 14vw, 210px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-family: "Exposure", Arial, sans-serif;
+  font-size: clamp(60px, 6vw, 95px);
+  font-weight: 400;
+  letter-spacing: -0.12em;
+  text-shadow: 0 1px 6px #5558;
+  transition:
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+.projects-arrow:hover,
+.projects-arrow:focus-visible {
+  color: var(--orange);
+}
+.projects-arrow span {
+  pointer-events: none;
+  line-height: 1;
+  transform: translateY(-4px);
+}
+.projects-arrow:active span {
+  transform: translateY(-4px) scale(0.88);
+}
+.projects-arrow--prev {
+  left: 0;
+}
+.projects-arrow--next {
+  right: 0;
+}
+.projects-arrow:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: -4px;
+}
+.projects-status {
+  text-align: center;
+  font:
+    12px Arial,
+    sans-serif;
+  color: #888;
+  margin: 14px 0 0;
+}
+
+@media (max-width: 800px) {
+  .projects {
+    min-height: 70svh;
+    padding-top: 65px;
+  }
+  .projects-heading {
+    margin-bottom: 35px;
+  }
+  .project-card {
+    flex-basis: 80vw;
+  }
+  .projects-track {
+    gap: 18px;
+  }
+  .projects-arrow {
+    width: 12vw;
+    height: calc(100% - 35px);
+    font-size: 55px;
+  }
+  .project-caption {
+    padding-top: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-track,
+  .project-media img {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* Для карточек без загруженного изображения размытие действует и на фон */
+.project-card.is-side .project-media {
+  filter: blur(5px) brightness(0.9);
+  transition: filter 0.65s ease;
+}
+.project-card .project-media {
+  transition: filter 0.65s ease;
+}
+@media (pointer: coarse) {
+  .projects-arrow {
+    cursor: pointer;
+  }
+}
+
+/* ПЯТЫЙ ЭКРАН — оранжевый манифест */
+.manifest {
+  min-height: 100svh;
+  background: #f45b2d;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6vw;
+  padding: 7vw 3.7vw;
+}
+.manifest-copy {
+  margin: 0;
+  font:
+    900 clamp(34px, 4.15vw, 79px)/0.96 "Exposure",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.045em;
+}
+.manifest-copy--right {
+  text-align: right;
+}
+@media (max-width: 750px) {
+  .manifest {
+    min-height: 75svh;
+    padding: 65px 6vw;
+    gap: 65px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .manifest-copy {
+    font-size: clamp(30px, 7vw, 52px);
+  }
+}
+
+/* ШЕСТОЙ ЭКРАН — награды */
+.awards {
+  min-height: 100svh;
+  position: relative;
+  background: var(--bg);
+  padding: clamp(45px, 7vh, 78px) 0 clamp(110px, 16vh, 180px);
+  overflow: hidden;
+}
+.awards-heading {
+  margin: 0 0 clamp(125px, 20vh, 220px);
+  text-align: center;
+  font:
+    900 clamp(40px, 4.4vw, 70px)/1.2 "Exposure",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.05em;
+}
+.awards-list {
+  position: relative;
+  z-index: 1;
+}
+.award-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 32% 33% 17% 18%;
+  align-items: center;
+  min-height: clamp(66px, 8.6vh, 96px);
+  padding: 0 clamp(20px, 1.7vw, 34px);
+  text-decoration: none;
+  color: #101010;
+  font:
+    400 clamp(15px, 1.35vw, 23px)/1.15 Arial,
+    sans-serif;
+  transition: background-color 0.4s ease;
+}
+.award-row:hover,
+.award-row:focus-visible,
+.award-row.is-active {
+  background: #ebebeb;
+}
+.award-row:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -2px;
+}
+.award-cell {
+  min-width: 0;
+}
+.awards-preview {
+  position: absolute;
+  z-index: 3;
+  left: 12%;
+  top: 29%;
+  width: clamp(180px, 19vw, 320px);
+  aspect-ratio: 1.4;
+  border-radius: 12px;
+  background: #161616;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(12px) scale(0.97);
+  transition:
+    opacity 0.34s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: visible;
+}
+.awards-preview.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.awards-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.awards-preview-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font:
+    900 40px "Exposure",
+    Arial,
+    sans-serif;
+}
+.awards-preview.is-fallback .awards-preview-fallback {
+  display: flex;
+}
+.awards-preview.is-fallback img {
+  visibility: hidden;
+}
+@media (max-width: 750px) {
+  .awards {
+    min-height: 70svh;
+    padding-bottom: 90px;
+  }
+  .awards-heading {
+    margin-bottom: 90px;
+  }
+  .award-row {
+    grid-template-columns: 25% 40% 17% 18%;
+    padding: 0 12px;
+    gap: 5px;
+    font-size: clamp(11px, 2.5vw, 15px);
+    min-height: 72px;
+  }
+  .awards-preview {
+    width: 40vw;
+    left: 8%;
+    top: 23%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .award-row,
+  .awards-preview {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* СЕДЬМОЙ ЭКРАН — медленная бегущая типографика */
+.contact-screen {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100svh;
+  min-height: 500px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.contact-marquee {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.contact-marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  white-space: nowrap;
+  animation: sep-contact-scroll 46s linear infinite;
+  will-change: transform;
+  filter: blur(clamp(2px, 0.32vw, 5px));
+  opacity: 0.68;
+}
+.contact-marquee-track span {
+  flex: none;
+  font:
+    900 clamp(135px, 21vw, 410px)/1 "Exposure",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.055em;
+  color: #b6b6b6;
+}
+@keyframes sep-contact-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+/* Зернистость обрезается по буквам, фон экрана остаётся чистым. */
+.contact-marquee-track span {
+  position: relative;
+}
+.contact-marquee-track span::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.83' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  background-clip: text;
+  -webkit-background-clip: text;
+  opacity: 0.36;
+}
+.contact-main-button {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: clamp(195px, 17vw, 285px);
+  padding: clamp(17px, 1.6vw, 25px) clamp(30px, 2.4vw, 48px);
+  border-radius: 999px;
+  background: rgba(255, 81, 34, 0.75);
+  color: #fff;
+  text-decoration: none;
+  font:
+    500 clamp(23px, 2vw, 37px)/1 Arial,
+    sans-serif;
+  letter-spacing: -0.045em;
+  transform: scale(1);
+  transition:
+    background-color 0.42s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+.contact-main-button:hover,
+.contact-main-button:focus-visible {
+  background: rgba(255, 73, 25, 1);
+  transform: scale(0.91);
+}
+.contact-main-button:active {
+  transform: scale(0.86);
+}
+.contact-main-button:focus-visible {
+  outline: 2px solid #6d25ff;
+  outline-offset: 5px;
+}
+@media (pointer: fine) {
+  .custom-cursor.is-purple,
+  .custom-cursor.is-purple.click {
+    width: 19px;
+    height: 19px;
+    background: #7027ff;
+    border-radius: 50%;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .custom-cursor.is-purple::after {
+    opacity: 0;
+  }
+}
+
+/* ВОСЬМОЙ ЭКРАН — подвал */
+.site-footer {
+  background: #202020;
+  color: #fff;
+  min-height: 100svh;
+  padding: clamp(62px, 8vh, 100px) clamp(28px, 7.2vw, 140px) 80px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.28fr 1.05fr 1.05fr 1.15fr;
+  gap: clamp(20px, 3.6vw, 70px);
+  align-items: start;
+}
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+.footer-heading {
+  margin: 0 0 clamp(32px, 4vh, 48px);
+  color: #979797;
+  font:
+    400 clamp(17px, 1.45vw, 25px)/1.2 Arial,
+    sans-serif;
+  letter-spacing: -0.055em;
+}
+.footer-column a,
+.footer-static {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 clamp(13px, 1.45vh, 20px);
+  color: #f7f7f7;
+  font:
+    400 clamp(16px, 1.47vw, 26px)/1.25 Arial,
+    sans-serif;
+  letter-spacing: -0.055em;
+  text-decoration: none;
+  text-underline-offset: 5px;
+  overflow-wrap: break-word;
+}
+.footer-column a:hover,
+.footer-column a:focus-visible {
+  text-decoration: underline;
+}
+.footer-column a:focus-visible {
+  outline: 1px solid #f7f7f7;
+  outline-offset: 4px;
+}
+.footer-soon {
+  cursor: default;
+}
+@media (max-width: 950px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 65px;
+  }
+  .site-footer {
+    min-height: 75svh;
+  }
+}
+@media (max-width: 580px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 44px 20px;
+  }
+  .footer-column:last-child {
+    grid-column: 1/-1;
+  }
+  .footer-heading {
+    margin-bottom: 20px;
+  }
+  .footer-column a,
+  .footer-static {
+    font-size: 16px;
+  }
+  .contact-screen {
+    min-height: 430px;
+    height: 75svh;
+  }
+  .contact-marquee-track span {
+    font-size: 190px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-marquee-track {
+    animation: none;
+  }
+  .contact-main-button {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* Коррекции курсора: фиолетовый над оранжевыми кнопками */
+@media (pointer: fine) {
+  .custom-cursor.is-purple,
+  .custom-cursor.is-purple.click,
+  .custom-cursor.is-purple.hover {
+    width: 19px;
+    height: 19px;
+    background: #7027ff;
+    border-radius: 50%;
+  }
+  .custom-cursor.is-purple::after {
+    opacity: 0;
+  }
+}
+
+/* ИСПРАВЛЕНИЯ: закрепляем только кнопки меню, без фоновой панели. */
+.header {
+  position: fixed;
+  top: 16px;
+  left: 2.4%;
+  right: 2.4%;
+  z-index: 1000;
+  pointer-events: none;
+}
+.header .logo,
+.header .nav,
+.header .nav a,
+.header > .button {
+  pointer-events: auto;
+}
+/* Якорные ссылки не прячут заголовки под фиксированными кнопками. */
+#about,
+#services,
+#projects,
+#awards,
+#contacts,
+#footer {
+  scroll-margin-top: 75px;
+}
+
+/* Возвращаем воздух между направлениями и проектами, проектами и манифестом. */
+.services {
+  min-height: 88svh;
+}
+.projects {
+  min-height: auto;
+  padding-top: clamp(125px, 16vh, 190px);
+  padding-bottom: clamp(135px, 18vh, 215px);
+}
+/* Награды: больше пространства перед заголовком, меньше пустоты снизу. */
+.awards {
+  min-height: 78svh;
+  padding-top: clamp(115px, 15vh, 180px);
+  padding-bottom: clamp(60px, 8vh, 100px);
+}
+.awards-heading {
+  margin-bottom: clamp(90px, 14vh, 155px);
+}
+@media (max-width: 800px) {
+  .header {
+    left: 4%;
+    right: 4%;
+    top: 12px;
+  }
+  .services {
+    min-height: 80svh;
+  }
+  .projects {
+    padding-top: 100px;
+    padding-bottom: 110px;
+  }
+  .awards {
+    min-height: unset;
+    padding-top: 100px;
+    padding-bottom: 70px;
+  }
+  .awards-heading {
+    margin-bottom: 85px;
+  }
+}
+
+/* Небольшая прозрачность только у четырёх пунктов закреплённого меню. */
+.header .nav a {
+  opacity: 0.78;
+  transition:
+    opacity 0.3s ease,
+    background-color 0.2s ease,
+    transform 0.18s ease;
+}
+.header .nav a:hover,
+.header .nav a:focus-visible {
+  opacity: 1;
+}
+
+/* Лёгкое, асинхронное покачивание оранжевых плашек второго экрана. */
+.about-tag {
+  will-change: transform;
+  animation: about-tag-drift 6.8s ease-in-out infinite alternate;
+}
+.about-tag--moscow {
+  animation-duration: 7.2s;
+  animation-delay: -1.2s;
+}
+.about-tag--year {
+  animation-duration: 6.4s;
+  animation-delay: -3.1s;
+  animation-direction: alternate-reverse;
+}
+.about-tag--available {
+  animation-duration: 8.1s;
+  animation-delay: -2.4s;
+}
+.about-tag--world {
+  animation-duration: 7.5s;
+  animation-delay: -4.2s;
+  animation-direction: alternate-reverse;
+}
+@keyframes about-tag-drift {
+  0% {
+    transform: translate3d(-5px, 3px, 0) rotate(-1deg);
+  }
+  50% {
+    transform: translate3d(4px, -5px, 0) rotate(0.6deg);
+  }
+  100% {
+    transform: translate3d(8px, 4px, 0) rotate(1deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-tag {
+    animation: none;
+    will-change: auto;
+  }
+}
+
+/* Актуальный вид закреплённого меню */
+.header .nav a {
+  opacity: 1;
+  background: rgba(100, 100, 100, 0.35);
+  color: #fff;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    transform 0.18s ease;
+}
+.header .nav a:hover,
+.header .nav a:focus-visible {
+  background: #000;
+  color: #fff;
+}
+/* Прелоадер — всегда над 3D и верхним меню до готового кадра */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+}
+.sep-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--orange);
+  color: var(--bg);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.55s ease,
+    visibility 0.55s ease;
+}
+.sep-preloader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.sep-preloader-inner {
+  width: min(420px, 75vw);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.sep-preloader-track {
+  height: 3px;
+  width: 100%;
+  background: rgba(255, 254, 252, 0.34);
+  overflow: hidden;
+  border-radius: 99px;
+}
+.sep-preloader-bar {
+  width: 0;
+  height: 100%;
+  background: var(--bg);
+  transform-origin: left;
+  transition: width 0.18s ease;
+}
+.sep-preloader-status {
+  font:
+    500 clamp(17px, 2vw, 25px)/1 Arial,
+    sans-serif;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.sep-preloader-message {
+  font:
+    500 14px/1.5 Arial,
+    sans-serif;
+  text-align: center;
+  max-width: 450px;
+  margin: 22px 24px 0;
+}
+.sep-preloader-retry {
+  background: var(--bg);
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 20px;
+  color: var(--orange);
+  font:
+    500 15px Arial,
+    sans-serif;
+  cursor: pointer;
+  margin-top: 15px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sep-preloader,
+  .sep-preloader-bar {
+    transition: none !important;
+  }
+}
+
+/* Fullscreen loader appears only on the first successful visit in this tab.
+   Later page navigations show the main page immediately. Hide just the
+   WebGL canvas until the loaded textures have actually been rendered. */
+html.is-returning .sep-preloader {
+  display: none !important;
+}
+html.is-returning #gallery {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+html.is-returning.gallery-ready #gallery {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.is-returning #gallery {
+    transition: none;
+  }
+}

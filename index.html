@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ru" class="is-loading">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SEP — делаем смысл</title>
+    <script>
+      // Once per browser tab: links back to SEP must not reopen the full-screen loader.
+      try {
+        if (localStorage.getItem("sep-gallery-visited-v1") === "1") {
+          document.documentElement.classList.remove("is-loading");
+          document.documentElement.classList.add("is-returning");
+        }
+      } catch (_) {
+        // Private browsing/storage restrictions: fall back to the ordinary preloader.
+      }
+    </script>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div
+      class="sep-preloader"
+      id="sepPreloader"
+      role="status"
+      aria-live="polite"
+      aria-label="Загрузка 3D-галереи"
+    >
+      <div class="sep-preloader-inner">
+        <div
+          class="sep-preloader-track"
+          role="progressbar"
+          aria-label="Загрузка изображений галереи"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="sepProgressTrack"
+        >
+          <div class="sep-preloader-bar" id="sepProgressBar"></div>
+        </div>
+        <div class="sep-preloader-status" id="sepProgressValue">0%</div>
+      </div>
+      <p class="sep-preloader-message" id="sepPreloaderMessage" hidden></p>
+      <button
+        class="sep-preloader-retry"
+        id="sepPreloaderRetry"
+        hidden
+        type="button"
+      >
+        Повторить загрузку
+      </button>
+    </div>
+
+    <section class="hero" id="home">
+      <div id="gallery" aria-label="Интерактивная 3D-галерея проектов"></div>
+      <header class="header">
+        <a class="logo" href="#home">sep</a>
+        <nav class="nav" aria-label="Основное меню">
+          <a href="#about">о нас</a>
+          <a href="#services">направления</a>
+          <a href="#projects">проекты</a>
+          <a href="#footer">контакты</a>
+        </nav>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button"
+          href="https://t.me/dashha_sep"
+          >связаться</a
+        >
+      </header>
+      <h1 class="hero-word hero-word--left">делаем</h1>
+      <div class="hero-word hero-word--right">смысл</div>
+      <div class="hero-cta">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button"
+          href="https://t.me/dashha_sep"
+          >связаться</a
+        >
+      </div>
+    </section>
+
+    <!-- Второй экран — статичная композиция по макету -->
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <h2 class="about-heading" id="about-heading">агентство</h2>
+      <span class="about-tag about-tag--moscow">Moscow, Russia</span>
+      <span class="about-tag about-tag--year">est 2026</span>
+      <span class="about-tag about-tag--available">24/7 available</span>
+      <span class="about-tag about-tag--world">working worldwide</span>
+      <div class="about-copy">
+        <p class="about-text about-text--primary">
+          Sep — креативная студия,<br />специализирующаяся на<br />диджитал-дизайне
+        </p>
+        <p class="about-text about-text--secondary">
+          Мы помогаем амбициозным<br />брендам выражать свою<br />уникальность
+        </p>
+      </div>
+    </section>
+
+    <!-- Третий экран — направления -->
+    <section class="services" id="services" aria-label="Направления студии">
+      <div class="services-list">
+        <a class="service-item" href="./soon.html">айдентика</a>
+        <a class="service-item" href="./soon.html">веб-дизайн</a>
+        <a class="service-item" href="./soon.html">диджитал-дизайн</a>
+        <a class="service-item" href="./soon.html">арт-дирекшн</a>
+        <a class="service-item" href="./soon.html">презентации</a>
+      </div>
+    </section>
+
+    <!-- Четвёртый экран — карусель проектов. Замените изображения в images/projects/ -->
+    <section class="projects" id="projects" aria-labelledby="projects-heading">
+      <h2 class="projects-heading" id="projects-heading">проекты</h2>
+      <div class="projects-viewport" aria-label="Карусель проектов">
+        <div class="projects-track" id="projectsTrack"></div>
+        <button
+          class="projects-arrow projects-arrow--prev"
+          id="projectsPrev"
+          type="button"
+          aria-label="Предыдущий проект"
+        >
+          <span aria-hidden="true">&lt;-</span>
+        </button>
+        <button
+          class="projects-arrow projects-arrow--next"
+          id="projectsNext"
+          type="button"
+          aria-label="Следующий проект"
+        >
+          <span aria-hidden="true">-&gt;</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Пятый экран — манифест -->
+    <section class="manifest" aria-label="Наш подход к дизайну">
+      <p class="manifest-copy manifest-copy--left">
+        дизайн — больше,<br />чем украшение
+      </p>
+      <p class="manifest-copy manifest-copy--right">
+        это инструмент<br />влияния и роста
+      </p>
+    </section>
+
+    <!-- Шестой экран — награды -->
+    <section class="awards" id="awards" aria-labelledby="awards-heading">
+      <h2 class="awards-heading" id="awards-heading">награды</h2>
+      <div class="awards-list" id="awardsList"></div>
+      <div class="awards-preview" id="awardsPreview" aria-hidden="true">
+        <img id="awardsPreviewImage" alt="" />
+        <span class="awards-preview-fallback" id="awardsPreviewFallback"
+          >GR</span
+        >
+      </div>
+    </section>
+
+    <!-- Седьмой экран — медленный типографический бегущий текст и контакт -->
+    <section class="contact-screen" id="contacts" aria-label="Связаться с SEP">
+      <div class="contact-marquee" aria-hidden="true">
+        <div class="contact-marquee-track">
+          <span data-text="ДАВАЙТЕ СДЕЛАЕМ КРАСИВО&nbsp;·&nbsp;"
+            >ДАВАЙТЕ СДЕЛАЕМ КРАСИВО&nbsp;·&nbsp;</span
+          ><span data-text="ДАВАЙТЕ СДЕЛАЕМ КРАСИВО&nbsp;·&nbsp;"
+            >ДАВАЙТЕ СДЕЛАЕМ КРАСИВО&nbsp;·&nbsp;</span
+          >
+        </div>
+      </div>
+      <a
+        class="contact-main-button"
+        href="https://t.me/dashha_sep"
+        target="_blank"
+        rel="noopener noreferrer"
+        >связаться</a
+      >
+    </section>
+
+    <!-- Восьмой экран — подвал -->
+    <footer class="site-footer" id="footer">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h2 class="footer-heading">Sep</h2>
+          <a href="#about">О нас</a>
+          <a href="#services">Направления</a>
+          <a href="#projects">Проекты</a>
+        </div>
+        <div class="footer-column">
+          <h2 class="footer-heading">Направления</h2>
+          <a href="./soon.html">Айдентика</a>
+          <a href="./soon.html">Веб-дизайн</a>
+          <a href="./soon.html">Диджитал-дизайн</a>
+          <a href="./soon.html">Презентации</a>
+          <a href="./soon.html">Рекламные проекты</a>
+          <a href="./soon.html">Арт-дирекшн</a>
+        </div>
+        <div class="footer-column">
+          <h2 class="footer-heading">Топ-проекты</h2>
+          <a href="./soon.html">INTER</a>
+          <a href="./projects/project-02.html">Smooth</a>
+          <a href="./soon.html">Квартира</a>
+          <a href="./soon.html">Cliff</a>
+          <a href="./soon.html">AIM8</a>
+        </div>
+        <div class="footer-column">
+          <h2 class="footer-heading">Вакансии</h2>
+          <span class="footer-static">Открыты<br />к предложениям</span>
+        </div>
+        <div class="footer-column">
+          <h2 class="footer-heading">Больше о нас</h2>
+          <a
+            href="https://www.instagram.com/sep_agency?dmpr=OXowZW5kY2o0Mmd1&amp;utm_source=qr"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Instagram</a
+          >
+          <a
+            href="https://t.me/sep_agency"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Telegram</a
+          >
+          <span class="footer-static">+ 7 985 748 50 60</span>
+          <span class="footer-static">Москва, Россия</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="./gallery.config.js"></script>
+    <script src="./designrigs-gallery.js"></script>
+    <script src="./js/preloader.js"></script>
+    <script>
+      (function () {
+        var preloader = window.SepPreloader;
+        try {
+          if (
+            !window.DesignRigsGallery ||
+            !window.GALLERY_CONFIG ||
+            !window.THREE
+          ) {
+            throw new Error("Не удалось загрузить движок 3D-галереи.");
+          }
+          var config = Object.assign({}, window.GALLERY_CONFIG, {
+            onLoadProgress: function (finished, total, failed) {
+              preloader.update(finished, total, failed);
+            },
+            onLoadReady: function (failed) {
+              preloader.ready(failed);
+            },
+          });
+          window.sepGallery = DesignRigsGallery.create(
+            document.getElementById("gallery"),
+            config,
+          );
+        } catch (error) {
+          console.error("SEP: ошибка 3D-галереи", error);
+          preloader.fail(
+            "Не удалось загрузить 3D-галерею. Проверьте подключение и повторите.",
+          );
+        }
+      })();
+    </script>
+    <script>
+      const cursor = document.getElementById("customCursor");
+      const finePointer = window.matchMedia("(pointer: fine)");
+      if (finePointer.matches) {
+        const serviceItems = document.querySelectorAll(".service-item");
+        const ordinaryLinks = document.querySelectorAll(".button, .nav a");
+        document.addEventListener("pointermove", (e) => {
+          if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+          cursor.style.opacity = "1";
+          // Проверка позиции также корректно обрабатывает быстрые движения курсора.
+          const target = e.target.closest ? e.target : document.body;
+          const onService = target.closest(".service-item");
+          const onArrow = target.closest(".projects-arrow");
+          const onProject = target.closest(".project-card");
+          const onAward = target.closest(".award-row");
+          const isOrange = !!target.closest(
+            ".contact-main-button, .button:hover, .projects-arrow:hover",
+          );
+          cursor.classList.toggle("is-purple", isOrange);
+          cursor.classList.toggle(
+            "is-service",
+            !!onService || !!onProject || !!onAward,
+          );
+          if (onService || onProject || onAward || onArrow)
+            cursor.classList.remove("hover");
+        });
+        ordinaryLinks.forEach((link) => {
+          link.addEventListener("pointerenter", () =>
+            cursor.classList.add("hover"),
+          );
+          link.addEventListener("pointerleave", () =>
+            cursor.classList.remove("hover"),
+          );
+        });
+        serviceItems.forEach((link) => {
+          link.addEventListener("pointerenter", () => {
+            cursor.classList.add("is-service");
+            cursor.classList.remove("hover");
+          });
+          link.addEventListener("pointerleave", () =>
+            cursor.classList.remove("is-service"),
+          );
+        });
+        document.addEventListener("pointerdown", () =>
+          cursor.classList.add("click"),
+        );
+        document.addEventListener("pointerup", () =>
+          cursor.classList.remove("click"),
+        );
+        document.addEventListener("pointercancel", () =>
+          cursor.classList.remove("click"),
+        );
+        document.addEventListener("mouseout", (e) => {
+          if (!e.relatedTarget) {
+            cursor.style.opacity = "0";
+            cursor.classList.remove(
+              "is-service",
+              "is-next",
+              "is-prev",
+              "hover",
+              "click",
+              "is-purple",
+            );
+          }
+        });
+        window.addEventListener("blur", () => {
+          cursor.style.opacity = "0";
+          cursor.classList.remove(
+            "is-service",
+            "is-next",
+            "is-prev",
+            "hover",
+            "click",
+            "is-purple",
+          );
+        });
+      }
+    </script>
+
+    <script src="./js/projects.js"></script>
+    <script src="./js/awards.js"></script>
+  </body>
+</html>

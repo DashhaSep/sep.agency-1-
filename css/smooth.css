@@ -1,0 +1,403 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap");
+:root {
+  --smooth-navy: #1b3051;
+  --smooth-olive: #969b3d;
+}
+body.smooth-page {
+  margin: 0;
+  background: #fffefa;
+  font-family: Inter, Arial, sans-serif;
+}
+.smooth-page .header {
+  z-index: 1000;
+}
+.smooth-page .header .nav a {
+  background: rgba(100, 100, 100, 0.35);
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.smooth-page .header .nav a:hover {
+  background: #000;
+  color: #fff;
+}
+.smooth-page .header .logo {
+  color: #050505;
+}
+.smooth-page .smooth-hero {
+  height: 100svh;
+  min-height: 570px;
+  background: var(--smooth-olive);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition:
+    background-color 1s ease,
+    color 1s ease;
+}
+.smooth-page .smooth-hero[data-theme="navy"] {
+  background: var(--smooth-navy);
+  color: #fff;
+}
+.smooth-page .smooth-hero[data-theme="grey"] {
+  background: #a3a7a7;
+  color: #fff;
+}
+.smooth-page .smooth-hero[data-theme="white"] {
+  background: #fff;
+  color: var(--smooth-navy);
+}
+.smooth-wordmark {
+  font-family: Inter, Arial, sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(80px, 11vw, 190px);
+  letter-spacing: -0.14em;
+  line-height: 1.08;
+  align-items: center;
+  padding-right: 0.16em;
+  margin: 0;
+  color: transparent;
+  -webkit-text-stroke: 1.95px currentColor;
+  paint-order: stroke fill;
+}
+.smooth-hero .smooth-wordmark {
+  -webkit-text-stroke-color: currentColor;
+}
+.smooth-hero .smooth-subtitle {
+  font-size: clamp(15px, 1.65vw, 25px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  margin: 10px 0 0;
+}
+.smooth-intro {
+  min-height: 350px;
+  padding: clamp(90px, 10vw, 190px) 6vw;
+  display: flex;
+  align-items: center;
+}
+.smooth-intro p {
+  max-width: 420px;
+  margin: 0;
+  font:
+    500 clamp(16px, 1.2vw, 22px)/1.32 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: -0.06em;
+}
+.smooth-photo {
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  background: #e5e3dd;
+}
+.smooth-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.smooth-photo--wide img {
+  aspect-ratio: 16/9;
+}
+.smooth-photo--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.smooth-photo--split img {
+  width: 100%;
+  aspect-ratio: 1/1.05;
+  object-fit: cover;
+}
+.smooth-photo--poster img {
+  aspect-ratio: 16/9;
+}
+.smooth-photo--drinks {
+  background: #fffefa;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 10vw;
+  padding: 7vw 5vw;
+}
+.smooth-photo--drinks img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.smooth-photo--drinks img:last-child {
+  margin-top: 9vw;
+}
+.smooth-finale {
+  min-height: 400px;
+  padding: 100px 20px 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.smooth-finale .smooth-wordmark {
+  color: var(--smooth-navy);
+  font-size: clamp(70px, 9vw, 150px);
+  text-align: center;
+  transform: none !important;
+}
+.smooth-finale .smooth-wordmark:first-child {
+  transform: translateX(-10%);
+}
+.smooth-finale .smooth-wordmark:last-child {
+  transform: translateX(10%);
+}
+.smooth-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 13px;
+  letter-spacing: 0;
+  background: #eceae6;
+  min-height: 240px;
+}
+.smooth-photo img:not([src]),
+.smooth-photo img[src=""] {
+  display: none;
+}
+.smooth-photo:has(img:not([src])) {
+  background: #eceae6;
+}
+.smooth-photo:has(img:not([src]))::after {
+  content: "Добавь фотографию в images/smooth/";
+  display: block;
+  padding: 25vw 10px;
+  text-align: center;
+  color: #777;
+}
+.smooth-photo--split:has(img:not([src]))::after,
+.smooth-photo--drinks:has(img:not([src]))::after {
+  display: none;
+}
+.smooth-photo--split .smooth-placeholder,
+.smooth-photo--drinks .smooth-placeholder {
+  aspect-ratio: 1/1;
+}
+.smooth-photo--drinks .smooth-placeholder:last-child {
+  margin-top: 9vw;
+}
+.smooth-page .site-footer {
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .smooth-page .smooth-hero {
+    min-height: 480px;
+  }
+  .smooth-intro {
+    min-height: 240px;
+    padding: 70px 7vw;
+  }
+  .smooth-photo--drinks {
+    gap: 5vw;
+    padding: 9vw 5vw;
+  }
+  .smooth-finale {
+    min-height: 300px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .smooth-page .smooth-hero {
+    transition: none;
+  }
+}
+
+/* SMOOTH — точные правки первого и следующих экранов */
+body.smooth-page {
+  background: #fffcf6;
+}
+.smooth-page .smooth-hero {
+  background: #9b983b;
+  transition: none !important;
+}
+.smooth-page .smooth-hero[data-theme="olive"] {
+  background: #9b983b;
+  color: #fff;
+}
+.smooth-page .smooth-hero[data-theme="navy"] {
+  background: #182e4e;
+  color: #fff;
+}
+.smooth-page .smooth-hero[data-theme="grey"] {
+  background: #9da2a3;
+  color: #fff;
+}
+.smooth-page .smooth-hero[data-theme="white"] {
+  background: #fff;
+  color: #182e4e;
+}
+.smooth-hero-logo {
+  width: min(55vw, 760px);
+  margin: 0;
+  position: relative;
+  line-height: 0;
+}
+.smooth-hero-logo .smooth-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.smooth-hero-logo .smooth-logo--white {
+  position: absolute;
+  inset: 0;
+}
+.smooth-hero[data-theme="white"] .smooth-logo--white,
+.smooth-hero[data-theme="olive"] .smooth-logo--navy,
+.smooth-hero[data-theme="navy"] .smooth-logo--navy,
+.smooth-hero[data-theme="grey"] .smooth-logo--navy {
+  opacity: 0;
+}
+.smooth-hero[data-theme="white"] .smooth-logo--navy {
+  opacity: 1;
+}
+.smooth-hero .smooth-subtitle {
+  color: inherit;
+}
+
+.smooth-task {
+  background: #fffcf6;
+  min-height: clamp(320px, 45vh, 530px);
+  display: flex;
+  align-items: center;
+  padding: 8vw 6vw;
+}
+.smooth-task-copy {
+  max-width: 420px;
+  font:
+    500 clamp(16px, 1.2vw, 22px)/1.35 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: -0.06em;
+}
+.smooth-task-label {
+  color: #777777;
+  display: block;
+  margin-bottom: 6px;
+}
+.smooth-task-copy p {
+  color: #080808;
+  margin: 0;
+}
+
+.smooth-identity {
+  min-height: clamp(420px, 62vh, 680px);
+  padding: clamp(70px, 20vh, 125px) 12vw;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  column-gap: 10vw;
+
+  background: #fffcf6;
+}
+
+.smooth-identity-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: clamp(55px, 8vh, 110px);
+}
+
+.smooth-identity-column h2 {
+  margin: 0;
+  min-height: 30px;
+
+  font:
+    500 clamp(18px, 1.35vw, 26px)/1.2 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: -0.06em;
+  color: #000;
+  text-align: center;
+}
+.smooth-identity-logo {
+  display: block;
+  width: min(100%, 350px);
+  height: auto;
+}
+.smooth-swatches {
+  display: flex;
+  gap: 10px;
+  margin-top: 31px;
+  align-items: center;
+}
+.smooth-swatch {
+  width: clamp(34px, 3.2vw, 52px);
+  height: clamp(34px, 3.2vw, 52px);
+  border-radius: 9px;
+  display: block;
+}
+.smooth-swatch--white {
+  border: 1px solid #9da2a3;
+}
+.smooth-page .smooth-photo--drinks,
+.smooth-page .smooth-finale {
+  background: #fffcf6;
+}
+
+@media (max-width: 700px) {
+  .smooth-hero-logo {
+    width: 75vw;
+  }
+  .smooth-identity {
+    padding: 80px 6vw;
+    gap: 30px;
+    min-height: 350px;
+  }
+  .smooth-identity-column {
+    gap: 45px;
+  }
+  .smooth-swatches {
+    gap: 5px;
+  }
+  .smooth-swatch {
+    width: 29px;
+    height: 29px;
+    border-radius: 6px;
+  }
+}
+
+
+/* Кастомный курсор SEP на странице SMOOTH */
+.smooth-cursor { display: none; }
+@media (pointer: fine) {
+  body.smooth-page,
+  body.smooth-page a,
+  body.smooth-page button,
+  body.smooth-page [role="button"] {
+    cursor: none !important;
+  }
+
+  .smooth-cursor {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ff5128;
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.25s ease, opacity 0.15s ease;
+  }
+  .smooth-cursor.is-visible { opacity: 1; }
+  .smooth-cursor.is-purple { background: #813cff; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .smooth-cursor { transition: none; }
+}
